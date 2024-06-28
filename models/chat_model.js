@@ -1,4 +1,4 @@
-import { Schema } from "mongoose";
+import { Schema, model } from "mongoose";
 
 const chatSchema = new Schema({
     userName: {type: String, required: true, unique: true},
