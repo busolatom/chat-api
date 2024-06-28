@@ -41,9 +41,9 @@ export const updateMessage = async (req, res, next) => {
     try {
         // update a message
         const newMessage = req.body.message;
-        const updatedMessage = await chatModel.findByIdAndUpdate(req.params.id, {message: newMessage});
+        const updatedMessage = await chatModel.findByIdAndUpdate(req.params.id, {message: newMessage}, {new: true});
         // return response
-        res.status(201).json(updatedMessage);
+        res.status(201).json(updatedMessage.message);
     } catch (error) {
         next(error);
     }
@@ -55,7 +55,7 @@ export const deleteMessage = async (req, res, next) => {
         // delete a message
         const deletedMessage = await chatModel.findByIdAndDelete(req.params.id);
         // return response
-        res.status(200).json(deletedMessage);
+        res.status(200).json(`${deletedMessage} deleted`);
     } catch (error) {
         next(error);
     }
