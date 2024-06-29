@@ -60,3 +60,16 @@ export const deleteMessage = async (req, res, next) => {
         next(error);
     }
 }
+
+// Update read status
+export const readStatus = async (req, res, next) => {
+    try {
+        // update read status
+        const read = req.body.readStatus
+        const newReadStatus = await chatModel.findByIdAndUpdate(req.params.id, {readStatus: read}, {new: true});
+        // return response
+            res.status(200).json(newReadStatus)
+    } catch (error) {
+        next(error);
+    }
+}

@@ -3,10 +3,12 @@ import normalize from 'normalize-mongoose';
 
 
 const chatSchema = new Schema({
-    userName: {type: String, required: true},
-    message: {type: String, required: true}
-},{
-    timestamps: true
+    senderId: {type: String},
+    recipientId: {type: String},
+    // userName: {type: String, required: true},
+    message: {type: String, required: true},
+    sentAt: {type: Date, default: Date.now()},
+    readStatus: {type: Boolean, default: false}
 })
 
 chatSchema.plugin(normalize);
