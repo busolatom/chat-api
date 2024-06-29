@@ -1,19 +1,18 @@
 import { Schema, model } from "mongoose";
-import normalize from 'normalize-mongoose';
+import {toJSON} from '@reis/mongoose-to-json';
 
 
 const chatSchema = new Schema({
     senderId: {type: String},
     recipientId: {type: String},
-    // userName: {type: String, required: true},
     message: {type: String, required: true},
     sentAt: {type: Date, default: Date.now()},
     readStatus: {type: Boolean, default: false}
 })
 
-chatSchema.plugin(normalize);
+chatSchema.plugin(toJSON);
 
-export const chatModel = model('Message', chatSchema) 
+export const chatModel = model('message', chatSchema) 
 
 
 
